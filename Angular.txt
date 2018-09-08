@@ -1,0 +1,26 @@
+Angular
+
+	- Framework FrontEnd
+	- Trabajo en memoria (Firebase)
+
+Modulos - componenetes de software
+JQuery (Libreria) - componentes visuales, etc
+
+
+
+node_modules 	: dependecias del proyecto
+.gitignore 		: archivos par omitir en el commit
+ *envrioments	: configracion sensible candidata para ir al .gitignore
+ *test.ts		: archivo para pruebas unitarias
+ *angular.json	: configuracion del proyecto, indica inicializadores y archivos de obligatorio uso
+ *package.json	: dependencias de aplicacion, produccion y desarrollo
+
+	archivos .spec.ts : contiene las especificaciones del componente para prubas y migracion por debajo del EMC6
+
+app 			: source de la aplicacion
+assets			: imgs, docs, etc
+enviroments 	: 	enviroments.prod.ts => configuracion exlusiva de produccion
+									enviroments.ts 		=> configuracion solo para desarrollo
+
+
+(ANGULAR)decorator = annotation(JAVA)
