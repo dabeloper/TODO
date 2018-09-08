@@ -15,23 +15,7 @@ export class TaskComponent implements OnInit {
 
   constructor() {
     this.owner = "David";
-    this.taskList = [
-      {
-        id : "1",
-        name: "Lavar platos",
-        category: "Casa"
-      },
-        {
-          id : "2",
-          name: "Realizar tarea",
-          category: "Diplomado"
-        },
-          {
-            id : "3",
-            name: "Reunión",
-            category: "Laboral"
-          },
-    ];
+    this.taskList = [];
 
     this.task = new Task;
   }
