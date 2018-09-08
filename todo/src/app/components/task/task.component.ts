@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Task} from '../../models/task';
+import { Task } from '../../models/task';
+import { TaskService } from '../../services/task.service';
 
 @Component({
   selector: 'app-task',
@@ -12,8 +13,9 @@ export class TaskComponent implements OnInit {
   taskList: Task[];
   task: Task;
   status: string = "add";
+  
 
-  constructor() {
+  constructor(private taskService: TaskService) {
     this.owner = "David";
     this.taskList = [];
 
@@ -21,14 +23,22 @@ export class TaskComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.taskService.getTasks().subscribe( (tasks)=> { 
+      this.taskList = tasks;
+      console.log(tasks); 
+    } );
   }
 
   addTask(){
     if(this.status=="add"){
-      this.taskList.push(this.task);
+      //this.taskList.push(this.task);
+      this.taskService.addTask(this.task);
+    }else{
+      this.taskService.updateTask(this.task);
     }
 
     this.task = new Task;
+    this.status = "add";
   }
 
   editTask(event,tarea: Task){
@@ -44,8 +54,10 @@ export class TaskComponent implements OnInit {
       }
     }*/
 
-    var i = this.taskList.findIndex( (tareaI) => { return tareaI.id == tarea.id} );
-    this.taskList.splice(i,1);
+    //var i = this.taskList.findIndex( (tareaI) => { return tareaI.id == tarea.id} );
+    //this.taskList.splice(i,1);
+
+    this.taskService.delTask(tarea);
   }
 
 }

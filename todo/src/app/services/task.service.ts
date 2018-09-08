@@ -13,7 +13,7 @@ export class TaskService {
   taskDoc: AngularFirestoreDocument<Task>;
   tasks: Observable<Task[]>;
 
-  constructor(private db: AngularFirestore) {
+  constructor(private readonly db: AngularFirestore) {
     this.taskCollection = db.collection("tasks");
     this.tasks = this.taskCollection.valueChanges();
   }
@@ -22,5 +22,19 @@ export class TaskService {
     return this.tasks;
   }
 
+  addTask(task: Task){
+    var id = this.db.createId();
+    task.id = id;
+    this.taskCollection.doc( task.id ).set({"id":task.id,"name":task.name, "category":task.category});
+  }
 
+  delTask(task: Task){
+    this.taskDoc = this.taskCollection.doc(task.id);
+    this.taskDoc.delete();
+  }
+
+  updateTask(task: Task){
+    this.taskDoc = this.taskCollection.doc(task.id);
+    this.taskDoc.update(task);
+  }
 }
