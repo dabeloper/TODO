@@ -24,3 +24,28 @@ enviroments 	: 	enviroments.prod.ts => configuracion exlusiva de produccion
 
 
 (ANGULAR)decorator = annotation(JAVA)
+
+
+----------
+
+15/09/18
+
+Devuelve el peso de la carpeta actual con archivos y sub carpetas
+$ du -sh
+
+Devuelve la cantidad de archivos en la carpeta actual
+$ find . -type f | wc -l
+
+
+
+Terminar Angular
+Deploy Angular
+Definir proyecto
+Definir exposicion
+
+Introduccion React
+Todo con React
+
+-Historial
+-Historial Match
+-Retar

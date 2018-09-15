@@ -1,0 +1,16 @@
+<h1> Las tareas de {{owner}} </h1>
+
+<div *ngIf="tareas?.length; else notask">
+  <ul class="list-group">
+    <li *ngFor="let task of tareas" class="list-group-item">
+      {{task.name}} -- {{task.category}}
+      <button type="button" (click)="editTask(event,task)" class="btn btn-info mx-2">Editar</button>
+      <button type="button" (click)="deleteTask(event,task)" class="btn btn-danger mx-2">Eliminar</button>
+    </li>
+  </ul>
+</div>
+
+
+<ng-template #notask>
+  <h2>No hay tareas</h2>
+</ng-template>

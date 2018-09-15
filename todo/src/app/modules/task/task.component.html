@@ -1,0 +1,7 @@
+<app-tasklist [tareas]="tareas"
+              (onDelete)="deleteTask($event)"
+              (onEdit)="editTask($event)"></app-tasklist>
+
+<app-task-form  [tareaEditar]="tareaEnEdicion"
+                [status]="status"
+                (onSubmit)="procesarFormulario($event)"></app-task-form>

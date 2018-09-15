@@ -1,19 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Task } from '../../models/task';
 import { TaskService } from '../../services/task.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.css']
 })
-export class TaskComponent implements OnInit {
+export class TaskComponent implements OnInit, OnDestroy {
+
+  ngOnDestroy(): void {
+    this._subscriptions.forEach( subscription => subscription.unsubscribe() );
+  }
 
   owner: string;
   taskList: Task[];
   task: Task;
   status: string = "add";
   
+  private _subscriptions: Subscription[] = [];
 
   constructor(private taskService: TaskService) {
     this.owner = "David";
@@ -23,10 +29,10 @@ export class TaskComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.taskService.getTasks().subscribe( (tasks)=> { 
+    this._subscriptions.push( this.taskService.getTasks().subscribe( (tasks)=> { 
       this.taskList = tasks;
       console.log(tasks); 
-    } );
+    } ) );
   }
 
   addTask(){
