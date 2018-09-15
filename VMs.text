@@ -1,0 +1,18 @@
+FULL VIRTUALIZATION
+
+VM (4 VCPUS) + VM (4 VCPUS) + VM ( 8 VCPUS)
+HYPERVISOR (VIRTUALBOX, VMWARE)
+HOST (8 CPUS)
+HARDWARE
+
+-----------------------------
+
+PARA VIRTUALIZACION => Virtualizar una pequeña parte de la maquina (+ Performance)
+
+CONTAINERS [ VM (4 VCPUS) + VM (4 VCPUS) + VM ( 8 VCPUS) ]
+HYPERVISOR (VIRTUALBOX, VMWARE)
+HOST (8 CPUS)
+HARDWARE
+
+VER PESO DE CARPETA
+$ du -sh folder_name
