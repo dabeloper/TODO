@@ -1,0 +1,41 @@
+<br>
+<a [routerLink]="['/project/']" class="btn btn-primary mr-2" style="color:white;"><i class="far fa-arrow-alt-circle-left"></i>&nbsp;Atras</a>
+<br>
+<h2> {{tituloVentana()}} </h2>
+
+<form (ngSubmit)="submitForm()">
+
+  <div class="form-group">
+    <label for="id">Nombre</label>
+    <div class="form-input">
+      <input type="text" class="form-input" name="name" [(ngModel)]="proyecto.name"/>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="id">Tareas</label>
+    <div class="form-input">
+    <!--
+      <input type="text" class="form-input" name="tasks" [(ngModel)]="proyecto.tasks" disabled/>
+      <select [(ngModel)]="proyecto.tasks">
+            <option *ngFor="let task of tasks" 
+                [value]="task" 
+                [attr.selected]="proyecto.tasks?.indexOf(task)>-1 ? true : null"></option>
+              {{title.Text}}
+            </option>
+        </select>
+    -->
+      <ul>
+            
+            <select class="mdb-select md-form" multiple
+                    [(ngModel)]="proyecto.tasks" (ngModelChange)="onChange($event)" name="tasks"
+                    [attr.selected]="proyecto.tasks?.indexOf(task)>-1 ? true : null">
+                    <option *ngFor="let t of tareas" [ngValue]="t"> {{t.category}} - {{t.name}} </option>
+            </select>
+        
+       </ul>
+    </div>
+  </div>
+
+  <input type="submit" name="" value="{{tituloBoton()}}" class="btn-primary" />
+</form>

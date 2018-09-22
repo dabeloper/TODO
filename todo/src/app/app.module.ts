@@ -13,13 +13,18 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { HeaderComponent } from './components/header/header.component';
 
 import {AppRoutingModule} from './app.routes';
+import { AuthComponent } from './auth/auth.component';
+import { AuthService } from './services/auth.service';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AuthGuardService } from './services/authguard.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskComponent,
     InicioComponent,
-    HeaderComponent
+    HeaderComponent,
+    AuthComponent
   ],
   imports: [
     AppRoutingModule,
@@ -28,7 +33,7 @@ import {AppRoutingModule} from './app.routes';
     AngularFireModule.initializeApp(environment.firebase, 'todo-app'), // imports firebase/app needed for everything
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
   ],
-  providers: [TaskService],
+  providers: [TaskService,AuthService,AngularFireAuth,AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
