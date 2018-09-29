@@ -6,3 +6,6 @@ flujo de datos bidireccional
 virtualización del DOM
 
 JSX: XML/HTML-like syntax used by React that extends ECMAScript so that XML/HTML-like text can co-exist with JavaScript/React code.
+
+
+$npx create-react-app todo
