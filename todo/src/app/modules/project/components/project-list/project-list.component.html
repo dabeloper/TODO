@@ -6,13 +6,16 @@
 <div *ngIf="proyectos?.length; else noproject">
   <ul class="list-group">
     <li *ngFor="let p of proyectos" class="list-group-item">
-      {{p.name}} -- {{p.tasks.length}} tareas
+      {{p.name}} -- {{p.tasks.length}} {{p.tasks.length==1 ? "tarea" : "tareas"}}
       <button type="button" (click)="editProject(event,p)" class="btn btn-info mx-2">Editar</button>
       <button type="button" (click)="deleteProject(event,p)" class="btn btn-danger mx-2">Eliminar</button>
     </li>
   </ul>
 </div>
 
+<div *ngIf="proyectoEnEdicion">
+  <app-project [proyecto]="proyectoEnEdicion" [estado_formulario]="estado_edicion" (onSubmit)="edicionFinalizada()" ></app-project>
+</div>
 
 <ng-template #noproject>
   <h2>No hay proyectos</h2>

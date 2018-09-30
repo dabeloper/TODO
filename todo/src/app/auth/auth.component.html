@@ -1,4 +1,4 @@
-<div class="login-form" *ngIf="!isLoggedIn; else mostrarcerrarsesion">
+<div class="login-form" *ngIf="!isLoggedIn(); else mostrarcerrarsesion">
   <div class="col-lg-3">
     <label>Correo</label>
   </div>
@@ -18,8 +18,8 @@
     Ingresar
   </button>
   <div class="reset">
-    <a (click)="resetPassword=false" *ngIf="resetPassword"> atras</a>
-    <a (click)="resetPassword=true" *ngIf="!resetPassword"> Cambiar contraseña</a>
+    <button (click)="resetPassword=false" *ngIf="resetPassword"> Atras</button>
+    <button (click)="resetPassword" *ngIf="!resetPassword"> Cambiar contraseña</button>
     <button (click)="signup()" [disabled]="!email || !password" *ngIf="!(authService.user | async)">Sign Up</button>
   </div>
 </div>

@@ -1,5 +1,5 @@
 <br>
-<a [routerLink]="['/project/']" class="btn btn-primary mr-2" style="color:white;"><i class="far fa-arrow-alt-circle-left"></i>&nbsp;Atras</a>
+<a *ngIf="estaCreando()" [routerLink]="['/project/']" class="btn btn-primary mr-2" style="color:white;"><i class="far fa-arrow-alt-circle-left"></i>&nbsp;Atras</a>
 <br>
 <h2> {{tituloVentana()}} </h2>
 
@@ -28,9 +28,9 @@
       <ul>
             
             <select class="mdb-select md-form" multiple
-                    [(ngModel)]="proyecto.tasks" (ngModelChange)="onChange($event)" name="tasks"
-                    [attr.selected]="proyecto.tasks?.indexOf(task)>-1 ? true : null">
-                    <option *ngFor="let t of tareas" [ngValue]="t"> {{t.category}} - {{t.name}} </option>
+                    [(ngModel)]="proyecto.tasks" (ngModelChange)="onChange($event)" name="tasks">
+                    <option *ngFor="let t of tareas" [ngValue]="t"
+                            [style.background] = "tareaEnProyecto(t) ? 'green' : 'transparent'"> {{t.category}} - {{t.name}} </option>
             </select>
         
        </ul>
@@ -38,4 +38,6 @@
   </div>
 
   <input type="submit" name="" value="{{tituloBoton()}}" class="btn-primary" />
+  <button class="btn-default" (click)="cancelar()">Cancelar</button>
+
 </form>

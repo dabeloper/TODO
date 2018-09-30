@@ -16,7 +16,7 @@ export class ProjectService {
     this.projectCollection = db.collection("projects");
     this.projects = this.projectCollection.valueChanges();
   }
-
+  
   getProjects(){
     return this.projects;
   }

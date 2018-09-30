@@ -3,6 +3,7 @@ import { Project } from '../../../../models/project';
 import { Subscription } from 'rxjs';
 import { ProjectService } from '../../../../services/project.service';
 import { Constants } from 'src/app/models/constants';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-project-list',
@@ -11,20 +12,18 @@ import { Constants } from 'src/app/models/constants';
 })
 export class ProjectListComponent implements OnInit, OnDestroy {
   
+  readonly estado_edicion: number = Constants.editar;
   @Input() estado_formulario: number;
-  proyecto: Project;
+  proyectoEnEdicion: Project;
   proyectos: Project[];
   private _subscripctions: Subscription[] = [];
 
-  constructor(private projectServices:ProjectService) { }
+  constructor(private projectServices:ProjectService, private router: Router) { }
 
   ngOnInit() {
     this._subscripctions.push( this.projectServices.getProjects().subscribe( (projects)=>{
-      console.log(projects);
       this.proyectos = projects;
     } ));
-    this.estado_formulario = Constants.crear;
-    this.proyecto = new Project();
   }
 
   ngOnDestroy(): void {
@@ -34,11 +33,20 @@ export class ProjectListComponent implements OnInit, OnDestroy {
   }
 
   editProject(e,project:Project){
+    this.proyectoEnEdicion = project;
     console.log(project);
   }
 
   deleteProject(e,project:Project){
-    console.log(project);    
+    console.log(project);
+    this.projectServices.delProject(project);
+  }
+  
+  edicionFinalizada(){
+    this.proyectoEnEdicion = null;
+    this.estado_formulario = -1;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+    this.router.navigate(["/project/projects"]));
   }
 
 }

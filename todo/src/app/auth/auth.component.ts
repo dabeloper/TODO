@@ -27,5 +27,8 @@ export class AuthComponent implements OnInit {
     alert("email sent to "+email)
     this.authService.resetPassword(email)
   }
+  isLoggedIn(){
+    return this.authService.isLoggedIn;
+  }
   ngOnInit() {}
 }
